@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading | تحميل | Загрузка</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
+        .container { background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; width: 90%; }
+        h2 { color: #333; margin-bottom: 5px; }
+        .subtitle { color: #666; font-size: 14px; margin-bottom: 20px; font-weight: bold;}
+        #timer { font-size: 24px; font-weight: bold; color: #d9534f; margin: 20px 0; }
+        #redirect-btn { display: none; background-color: #5cb85c; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 18px; transition: background 0.3s; }
+        #redirect-btn:hover { background-color: #4cae4c; }
+        .warning { margin-top: 20px; font-size: 12px; color: #777; line-height: 1.5; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Please wait...</h2>
+    <div class="subtitle">انتظر قليلاً... | Пожалуйста, подождите...</div>
+    
+    <p>Verifying your link / جاري التحقق / Проверка ссылки...</p>
+    <div id="timer">10</div>
+    
+    <a href="#" id="redirect-btn">Continue / متابعة / Продолжить</a>
+    
+    <p class="warning">
+        VPN or Auto-clickers will result in a permanent ban.<br>
+        استخدام الـ VPN يعرضك للحظر النهائي.<br>
+        Использование VPN приведет к бану.
+    </p>
+</div>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userid');
+    
+    // الرابط بتاعك جاهز ومدمج
+    const monetagBaseLink = "https://omg10.com/4/11057887/?ymid=";
+    
+    let timeLeft = 10;
+    const timerElement = document.getElementById('timer');
+    const redirectBtn = document.getElementById('redirect-btn');
+
+    const countdown = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            timerElement.style.display = 'none';
+            if (userId) {
+                redirectBtn.href = monetagBaseLink + userId;
+                redirectBtn.style.display = 'inline-block';
+            } else {
+                timerElement.style.display = 'block';
+                timerElement.textContent = "Error / خطأ / Ошибка";
+                timerElement.style.color = "red";
+            }
+        }
+    }, 1000);
+</script>
+</body>
+</html>
